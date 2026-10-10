@@ -14,3 +14,7 @@ Agente virtual especializado en la interpretación de modelos de Machine Learnin
 ## Contexto de Datos (Kaggle Dataset)
 - **Fuente:** DataBase-trafic analitic.csv
 - **Variables Clave:** Hora, día, temperatura, precipitaciones y volumen de tráfico estimado.
+
+## Ejemplo de Interacción (Prompt & Respuesta Esperada)
+- **Usuario / Ingeniero:** *"¿Qué horarios presentan mayor riesgo de congestión y qué acciones preventivas se podrían considerar?"*
+- **Agente (Gemini Skill):** *"Con base en el análisis del modelo Random Forest ($R^2 = 0.9524$), las crestas de tráfico se concentran en las horas pico de la mañana y la tarde. Se recomienda evaluar la sincronización dinámica de semáforos y la habilitación de desvíos preventivos."*
