@@ -3,51 +3,198 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard de Analítica y Predicción de Tráfico</title>
-    <!-- FontAwesome para iconos -->
+    <title>Dashboard de Analítica y Predicción de Tráfico | Unilasallista</title>
+    <!-- FontAwesome & Google Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: #0f172a; color: #f8fafc; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; text-align: center; }
-        .container { max-width: 800px; padding: 40px; background: rgba(30, 41, 59, 0.7); border-radius: 16px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5); }
-        h1 { font-size: 2.5rem; margin-bottom: 15px; background: linear-gradient(to right, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        p { font-size: 1.1rem; color: #94a3b8; margin-bottom: 30px; line-height: 1.6; }
-        .hero-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
-        .btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 24px; border-radius: 8px; font-weight: 600; text-decoration: none; transition: transform 0.2s, background 0.2s; }
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --accent-blue: #38bdf8;
+            --accent-green: #10b981;
+            --accent-purple: #818cf8;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; padding-bottom: 60px; }
+
+        header {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border-bottom: 1px solid var(--border-color);
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+
+        .badge {
+            display: inline-block;
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent-blue);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+
+        h1 { font-size: 2.8rem; font-weight: 800; margin-bottom: 15px; background: linear-gradient(to right, var(--accent-blue), var(--accent-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .subtitle { font-size: 1.15rem; color: var(--text-muted); max-width: 750px; margin: 0 auto 30px; }
+
+        .hero-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
+        .btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 24px; border-radius: 8px; font-weight: 600; text-decoration: none; transition: all 0.2s; }
         .btn-primary { background-color: #3b82f6; color: white; }
         .btn-primary:hover { background-color: #2563eb; transform: translateY(-2px); }
-        .btn-secondary { background-color: #10b981; color: white; }
+        .btn-secondary { background-color: var(--accent-green); color: white; }
         .btn-secondary:hover { background-color: #059669; transform: translateY(-2px); }
-        .btn-outline { background-color: transparent; border: 2px solid #cbd5e1; color: #f8fafc; }
-        .btn-outline:hover { background-color: rgba(255, 255, 255, 0.1); transform: translateY(-2px); }
-        .footer { margin-top: 30px; font-size: 0.95rem; color: #64748b; }
+        .btn-outline { background-color: transparent; border: 2px solid var(--border-color); color: var(--text-main); }
+        .btn-outline:hover { background-color: rgba(255, 255, 255, 0.05); transform: translateY(-2px); }
+
+        /* Grid de Métricas */
+        .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 40px 0; }
+        .metric-card { background: var(--card-bg); padding: 25px; border-radius: 12px; border: 1px solid var(--border-color); text-align: center; }
+        .metric-value { font-size: 2.2rem; font-weight: 800; color: var(--accent-blue); margin-top: 10px; }
+        .metric-label { font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Secciones de Documentación */
+        .doc-section { background: var(--card-bg); padding: 35px; border-radius: 16px; border: 1px solid var(--border-color); margin-top: 30px; }
+        .doc-section h2 { font-size: 1.6rem; color: var(--accent-blue); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .doc-section h3 { font-size: 1.2rem; color: var(--accent-purple); margin: 20px 0 10px; }
+        .doc-section p, .doc-section ul { color: var(--text-muted); font-size: 1rem; margin-bottom: 15px; }
+        .doc-section ul { list-style: none; padding-left: 0; }
+        .doc-section ul li { position: relative; padding-left: 25px; margin-bottom: 10px; }
+        .doc-section ul li::before { content: "▹"; position: absolute; left: 0; color: var(--accent-blue); font-weight: bold; }
+
+        /* Entregables Grid */
+        .deliverables-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 20px; }
+        .deliverable-item { background: rgba(15, 23, 42, 0.6); padding: 20px; border-radius: 10px; border: 1px solid var(--border-color); }
+        .deliverable-item h4 { color: var(--text-main); margin-bottom: 8px; font-size: 1.1rem; }
+        .deliverable-item p { font-size: 0.9rem; margin-bottom: 12px; color: var(--text-muted); }
+
+        footer { text-align: center; margin-top: 50px; color: var(--text-muted); font-size: 0.9rem; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Dashboard de Analítica y Predicción de Tráfico</h1>
-        <p>Solución de ingeniería impulsada por Ciencia de Datos, Machine Learning (RandomForestRegressor con <strong>R² = 0.9524</strong>) y Agentes de Inteligencia Artificial orientados a la gestión de movilidad urbana.</p>
-        
-        <div class="hero-buttons">
-            <!-- Botón al Repositorio de GitHub -->
-            <a href="https://github.com/d9566585-cloud/traffic-analytics-dashboard" class="btn btn-primary" target="_blank">
-                <i class="fa-brands fa-github"></i> Repositorio GitHub
-            </a>
 
-            <!-- Botón al Video Explicativo en Google Drive -->
-            <a href="https://drive.google.com/file/d/1cBl6Fj1JRUACxWD8KfC4MtSJinLEaY28/view?usp=sharing" class="btn btn-secondary" target="_blank">
-                <i class="fa-solid fa-circle-play"></i> Ver Video Explicativo
-            </a>
+    <header>
+        <div class="container">
+            <span class="badge">EVALUACIÓN DE SEGUIMIENTO • INGENIERÍA DE SOFTWARE 2026</span>
+            <h1>Dashboard de Analítica y Predicción de Tráfico</h1>
+            <p class="subtitle">Solución integral de movilidad urbana impulsada por Ciencia de Datos, Machine Learning (RandomForestRegressor) y Agentes de Inteligencia Artificial.</p>
+            
+            <div class="hero-buttons">
+                <!-- Botón al Repositorio de GitHub -->
+                <a href="https://github.com/d9566585-cloud/traffic-analytics-dashboard" class="btn btn-primary" target="_blank">
+                    <i class="fa-brands fa-github"></i> Repositorio GitHub
+                </a>
 
-            <!-- Botón al Cuaderno de Google Colab -->
-            <a href="https://colab.research.google.com/drive/1YgRNCG17hA6JIhaFNJ1F7y2TAnTYe1KC?usp=sharing" class="btn btn-outline" target="_blank">
-                <i class="fa-solid fa-code"></i> Código en Colab
-            </a>
+                <!-- Botón al Video Explicativo en Google Drive -->
+                <a href="https://drive.google.com/file/d/1cBl6Fj1JRUACxWD8KfC4MtSJinLEaY28/view?usp=sharing" class="btn btn-secondary" target="_blank">
+                    <i class="fa-solid fa-circle-play"></i> Ver Video Explicativo
+                </a>
+
+                <!-- Botón al Cuaderno de Google Colab -->
+                <a href="https://colab.research.google.com/drive/1YgRNCG17hA6JIhaFNJ1F7y2TAnTYe1KC?usp=sharing" class="btn btn-outline" target="_blank">
+                    <i class="fa-solid fa-code"></i> Código en Colab
+                </a>
+            </div>
         </div>
-        
-        <div class="footer">
-            Evaluación de Seguimiento • Ingeniería de Software • Unilasallista 2026
+    </header>
+
+    <main class="container">
+
+        <!-- Métricas del Modelo -->
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-label">Coeficiente R²</div>
+                <div class="metric-value">0.9524</div>
+                <p style="font-size: 0.8rem; color: #64748b; margin-top: 5px;">95.24% de varianza explicada</p>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Error Absoluto Medio (MAE)</div>
+                <div class="metric-value">228.66</div>
+                <p style="font-size: 0.8rem; color: #64748b; margin-top: 5px;">Unidades de error promedio</p>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Raíz Error Cuadrático (RMSE)</div>
+                <div class="metric-value">426.29</div>
+                <p style="font-size: 0.8rem; color: #64748b; margin-top: 5px;">Desviación en estimaciones</p>
+            </div>
         </div>
-    </div>
+
+        <!-- Documentación Completa del Desarrollo -->
+        <section class="doc-section">
+            <h2><i class="fa-solid fa-book-bookmark"></i> Documentación del Desarrollo del Proyecto</h2>
+            
+            <h3>1. Descripción General y Objetivos</h3>
+            <p>Este proyecto implementa un sistema inteligente para la estimación y análisis del flujo vehicular urbano. Utilizando un modelo predictivo basado en Machine Learning, la plataforma procesa variables meteorológicas y temporales para anticipar niveles de congestión vial y optimizar la toma de decisiones operativas.</p>
+
+            <h3>2. Pipeline de Datos y Entrenamiento</h3>
+            <ul>
+                <li><strong>Dataset Base:</strong> Extracción de datos históricos de tráfico (<code>DataBase-trafic analitic.csv</code>).</li>
+                <li><strong>Variables Analizadas:</strong> Hora del día, día de la semana, temperatura, precipitaciones y volumen vehicular estimado.</li>
+                <li><strong>Modelo Seleccionado:</strong> <code>RandomForestRegressor</code> en Python (Google Colab), seleccionado por su alta robustez frente a relaciones no lineales entre el clima y la densidad de tráfico.</li>
+            </ul>
+
+            <h3>3. Arquitectura y Despliegue (CI/CD)</h3>
+            <p>La aplicación está estructurada para garantizar despliegue continuo:</p>
+            <ul>
+                <li><strong>Control de Versiones:</strong> Repositorio oficial alojado en GitHub.</li>
+                <li><strong>Hosting de la Landing Page:</strong> Despliegue automático en producción mediante Netlify.</li>
+                <li><strong>Inteligencia Artificial Conversacional:</strong> Implementación de una custom skill de Gemini para interpretar las métricas técnicas del modelo en lenguaje natural.</li>
+            </ul>
+        </section>
+
+        <!-- Resumen de los 6 Entregables -->
+        <section class="doc-section">
+            <h2><i class="fa-solid fa-list-check"></i> Relación de Entregables Requeridos</h2>
+            
+            <div class="deliverables-grid">
+                <div class="deliverable-item">
+                    <h4>1. Infografía</h4>
+                    <p>Esquema conceptual estructurado bajo pilares técnicos y visuales.</p>
+                    <a href="https://github.com/d9566585-cloud/traffic-analytics-dashboard/blob/main/INFOGRAFIA.md" style="color: var(--accent-blue); font-size: 0.85rem; text-decoration: none;" target="_blank">Ver INFOGRAFIA.md →</a>
+                </div>
+                <div class="deliverable-item">
+                    <h4>2. Video Explicativo</h4>
+                    <p>Síntesis ejecutiva del proyecto producida mediante NotebookLM en Google Drive.</p>
+                    <a href="https://drive.google.com/file/d/1cBl6Fj1JRUACxWD8KfC4MtSJinLEaY28/view?usp=sharing" style="color: var(--accent-green); font-size: 0.85rem; text-decoration: none;" target="_blank">Ver Video en Drive →</a>
+                </div>
+                <div class="deliverable-item">
+                    <h4>3. Landing Page</h4>
+                    <p>Portal web interactivo alojado en Netlify con actualización continua.</p>
+                    <span style="color: var(--accent-blue); font-size: 0.85rem;">Sitio Web Actual</span>
+                </div>
+                <div class="deliverable-item">
+                    <h4>4. Repositorio GitHub</h4>
+                    <p>Código fuente, datasets de Kaggle y scripts de entrenamiento en Colab.</p>
+                    <a href="https://github.com/d9566585-cloud/traffic-analytics-dashboard" style="color: var(--accent-blue); font-size: 0.85rem; text-decoration: none;" target="_blank">Ver Repositorio →</a>
+                </div>
+                <div class="deliverable-item">
+                    <h4>5. Gemini Custom Skill</h4>
+                    <p>Configuración del System Prompt y capacidades del agente consultor.</p>
+                    <a href="https://github.com/d9566585-cloud/traffic-analytics-dashboard/blob/main/skills/traffic_analyst_skill.md" style="color: var(--accent-blue); font-size: 0.85rem; text-decoration: none;" target="_blank">Ver Skill.md →</a>
+                </div>
+                <div class="deliverable-item">
+                    <h4>6. Documentación</h4>
+                    <p>Desarrollo técnico completo integrado directamente en esta plataforma.</p>
+                    <a href="https://github.com/d9566585-cloud/traffic-analytics-dashboard/blob/main/README.md" style="color: var(--accent-blue); font-size: 0.85rem; text-decoration: none;" target="_blank">Ver README.md →</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            Corporación Universitaria Lasallista (Unilasallista) • Facultad de Ingeniería • 2026
+        </div>
+    </footer>
+
 </body>
 </html>
