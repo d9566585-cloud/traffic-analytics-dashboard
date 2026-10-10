@@ -1,46 +1,72 @@
-# 🚗 Traffic Analytics - Dashboard & Toma de Decisiones
+# 🚦 Dashboard de Analítica y Predicción de Tráfico Vehicular
 
-Herramienta interactiva desarrollada en Python y Streamlit para la predicción en tiempo real del volumen de tráfico vehicular, integrada con un modelo de Machine Learning (Random Forest) enfocado en el apoyo a la toma de decisiones en gestión vial.
-
----
-
-## 📌 Descripción del Proyecto
-
-El sistema analiza variables temporales (hora del día, día de la semana, mes) y meteorológicas (temperatura, lluvia, nieve, cobertura de nubes) para estimar el flujo de vehículos e identificar patrones de congestión.
-
-### 🎯 Funcionalidades Principales
-- **Predicción en Tiempo Real:** Cálculo instantáneo del volumen de tráfico con alertas dinámicas.
-- **Soporte a la Toma de Decisiones (T.D.):**
-  - Visualización del nivel de importancia de cada variable según el modelo Random Forest.
-  - Evaluación continua del rendimiento del modelo con métricas estándar.
+> **Evaluación de Seguimiento — Ingeniería de Software**  
+> **Corporación Universitaria Lasallista (Unilasallista)**  
+> **Año:** 2026
 
 ---
 
-## 📊 Métricas del Modelo de Machine Learning
-
-El modelo evaluado (Random Forest Regressor) obtuvo los siguientes resultados en las pruebas de validación:
-
-| Métrica | Valor | Descripción |
-| :--- | :---: | :--- |
-| **Coeficiente de Determinación ($R^2$)** | **0.9524** | Explica el **95.24%** de la variabilidad del tráfico. |
-| **Error Absoluto Medio (MAE)** | **228.66** | Desviación promedio reducida respecto a los valores reales. |
-| **Error Cuadrático Medio (RMSE)** | **426.29** | Sensibilidad ante desviaciones atípicas. |
+## 📋 Descripción del Proyecto
+Este proyecto implementa una solución integral de analítica y predicción de flujo vehicular basada en ciencia de datos y Machine Learning. Utilizando un dataset histórico de tráfico (proveniente de Kaggle), el sistema procesa variables temporales y meteorológicas para estimar la congestión vial, apoyando la toma de decisiones en la ingeniería de movilidad urbana. Además, incorpora una **Skill personalizada de Google Gemini** para actuar como un agente consultor inteligente.
 
 ---
 
-## 📁 Estructura del Repositorio
+## 🛠️ Entregables del Proyecto (100% Completados)
 
-- `app.py`: Código principal de la aplicación web en Streamlit.
-- `modelo_traffic_analytics.joblib`: Modelo Random Forest entrenado y serializado.
-- `DataBase-trafic analitic.csv`: Dataset procesado de volumen de tráfico y clima.
-- `metricas_modelo.csv`: Reporte detallado de métricas de desempeño.
-- `resultados_prediccion.csv`: Predicciones generadas en fase de prueba.
-- `grafica_trafico_por_hora.png`: Gráfica descriptiva del comportamiento temporal del tráfico.
+Los 6 componentes desarrollados para cumplir con la rúbrica de evaluación son:
+
+1. **Infografía Conceptual:**  
+   Diseño académico estructurado en pilares técnicos, disponible en el archivo [`INFOGRAFIA.md`](./INFOGRAFIA.md).
+
+2. **Video Explicativo:**  
+   Resumen ejecutivo y síntesis técnica generada con **NotebookLM**.  
+   👉 [Ver Video Explicativo en Google Drive](https://drive.google.com/file/d/1cBl6Fj1JRUACxWD8KfC4MtSJinLEaY28/view?usp=sharing)
+
+3. **Landing Page Interactiva:**  
+   Desplegada y alojada en producción mediante Netlify:  
+   👉 [https://traffic-analytics-dashboard.netlify.app](https://traffic-analytics-dashboard.netlify.app)
+
+4. **Repositorio y Código Fuente:**  
+   Proyecto publicado oficialmente en GitHub con todo el código, assets y documentación:  
+   👉 [https://github.com/d9566585-cloud/traffic-analytics-dashboard](https://github.com/d9566585-cloud/traffic-analytics-dashboard)  
+   👉 [Ver Cuaderno de Entrenamiento en Google Colab](https://colab.research.google.com/drive/1YgRNCG17hA6JIhaFNJ1F7y2TAnTYe1KC?usp=sharing)
+
+5. **Gemini Skill:**  
+   Implementación de agente consultor orientado a IA conversacional para interpretación de métricas del dataset de Kaggle:  
+   👉 [`skills/traffic_analyst_skill.md`](./skills/traffic_analyst_skill.md)
+
+6. **Documentación del Desarrollo:**  
+   Metodología, pipeline de datos, arquitectura y resultados detallados en las secciones siguientes de este documento.
 
 ---
 
-## 🛠️ Tecnologías Utilizadas
+## 📖 Documentación del Desarrollo (Punto 6)
 
-- **Lenguaje:** Python 3.x
-- **Librerías principales:** Streamlit, Pandas, NumPy, Scikit-learn, Joblib, Matplotlib / Seaborn
-- **Despliegue/Túnel:** Cloudflare Tunnel (`cloudflared`) / Google Colab
+### 1. Pipeline de Datos y Procesamiento
+* **Fuente:** Dataset de Kaggle (`DataBase-trafic analitic.csv`).
+* **Variables de Entrada (Features):** Hora del día, día de la semana, temperatura (°C), precipitación/lluvia y nubosidad.
+* **Variable Objetivo (Target):** Volumen/Flujo vehicular estimado.
+* **Preprocesamiento:** Limpieza de valores nulos, codificación de variables categóricas temporales y normalización mediante Scikit-learn en Google Colab.
+
+### 2. Modelo de Machine Learning (`RandomForestRegressor`)
+Se eligió el algoritmo de ensamble **Random Forest Regressor** debido a su capacidad para modelar relaciones no lineales complejas entre el clima y el tráfico vehicular sin sufrir sobreajuste.
+
+#### 📊 Métricas Oficiales de Desempeño:
+* **Coeficiente de Determinación ($R^2$):** `0.9524` *(El modelo explica el 95.24% de la variabilidad del tráfico)*.
+* **Error Absoluto Medio (MAE):** `228.66`
+* **Raíz del Error Cuadrático Medio (RMSE):** `426.29`
+
+### 3. Arquitectura del Sistema y Despliegue
+* **Frontend / UI:** Landing page responsiva (`index.html`) diseñada con componentes de interfaz modernos.
+* **CI/CD & Hosting:** Despliegue automatizado continuo mediante integración GitHub ↔ Netlify.
+* **Entorno de Experimentación:** Google Colab para entrenamiento y validación de modelos.
+* **Agente IA:** Definición de System Prompt y contexto delimitado para integración con Google Gemini.
+
+---
+
+## 🤖 Integración de la Skill de Gemini
+
+La Skill personalizada (`traffic-analytics-coach`) transforma a Gemini en un consultor técnico capaz de:
+1. Traducir el significado de métricas complejas ($R^2 = 0.9524$, MAE = 228.66) a lenguaje natural para ingenieros de tránsito.
+2. Identificar franjas horarias críticas con mayor probabilidad de congestión.
+3. Sugerir pautas preventivas de gestión vial sujetas a validación operativa.
