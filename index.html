@@ -1,16 +1,53 @@
-<div class="hero-buttons">
-    <!-- Botón al Repositorio de GitHub -->
-    <a href="https://github.com/d9566585-cloud/traffic-analytics-dashboard" class="btn btn-primary" target="_blank">
-        <i class="fa-brands fa-github"></i> Repositorio GitHub
-    </a>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Analítica y Predicción de Tráfico</title>
+    <!-- FontAwesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #0f172a; color: #f8fafc; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; text-align: center; }
+        .container { max-width: 800px; padding: 40px; background: rgba(30, 41, 59, 0.7); border-radius: 16px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5); }
+        h1 { font-size: 2.5rem; margin-bottom: 15px; background: linear-gradient(to right, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        p { font-size: 1.1rem; color: #94a3b8; margin-bottom: 30px; line-height: 1.6; }
+        .hero-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+        .btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 24px; border-radius: 8px; font-weight: 600; text-decoration: none; transition: transform 0.2s, background 0.2s; }
+        .btn-primary { background-color: #3b82f6; color: white; }
+        .btn-primary:hover { background-color: #2563eb; transform: translateY(-2px); }
+        .btn-secondary { background-color: #10b981; color: white; }
+        .btn-secondary:hover { background-color: #059669; transform: translateY(-2px); }
+        .btn-outline { background-color: transparent; border: 2px solid #cbd5e1; color: #f8fafc; }
+        .btn-outline:hover { background-color: rgba(255, 255, 255, 0.1); transform: translateY(-2px); }
+        .footer { margin-top: 30px; font-size: 0.95rem; color: #64748b; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Dashboard de Analítica y Predicción de Tráfico</h1>
+        <p>Solución de ingeniería impulsada por Ciencia de Datos, Machine Learning (RandomForestRegressor con <strong>R² = 0.9524</strong>) y Agentes de Inteligencia Artificial orientados a la gestión de movilidad urbana.</p>
+        
+        <div class="hero-buttons">
+            <!-- Botón al Repositorio de GitHub -->
+            <a href="https://github.com/d9566585-cloud/traffic-analytics-dashboard" class="btn btn-primary" target="_blank">
+                <i class="fa-brands fa-github"></i> Repositorio GitHub
+            </a>
 
-    <!-- Botón al Video Explicativo en Google Drive -->
-    <a href="https://drive.google.com/file/d/1cBl6Fj1JRUACxWD8KfC4MtSJinLEaY28/view?usp=sharing" class="btn btn-secondary" target="_blank">
-        <i class="fa-solid fa-circle-play"></i> Ver Video Explicativo
-    </a>
+            <!-- Botón al Video Explicativo en Google Drive -->
+            <a href="https://drive.google.com/file/d/1cBl6Fj1JRUACxWD8KfC4MtSJinLEaY28/view?usp=sharing" class="btn btn-secondary" target="_blank">
+                <i class="fa-solid fa-circle-play"></i> Ver Video Explicativo
+            </a>
 
-    <!-- Botón al Cuaderno de Google Colab -->
-    <a href="https://colab.research.google.com/drive/1YgRNCG17hA6JIhaFNJ1F7y2TAnTYe1KC?usp=sharing" class="btn btn-outline" target="_blank">
-        <i class="fa-solid fa-code"></i> Código en Colab
-    </a>
-</div>
+            <!-- Botón al Cuaderno de Google Colab -->
+            <a href="https://colab.research.google.com/drive/1YgRNCG17hA6JIhaFNJ1F7y2TAnTYe1KC?usp=sharing" class="btn btn-outline" target="_blank">
+                <i class="fa-solid fa-code"></i> Código en Colab
+            </a>
+        </div>
+        
+        <div class="footer">
+            Evaluación de Seguimiento • Ingeniería de Software • Unilasallista 2026
+        </div>
+    </div>
+</body>
+</html>
